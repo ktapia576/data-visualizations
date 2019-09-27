@@ -1,0 +1,18 @@
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border: 1px solid #737373;
+}
+.option {
+  color: #666;
+  padding: .5vw;
+}
+.option a{
+  color: #666;
+  padding: .5vw;
+  text-decoration: none;  /*Get rid of hyperlink blue outline*/
+}
+.option:hover {     /*When Cursor Hovers it will highlight option*/
+  background-color: #ddd;
+}
