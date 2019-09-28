@@ -5,6 +5,7 @@ body {
 .container {
   display: flex;
   flex-wrap: wrap;
+  height: 96.5vh;
 }
 
 /* ------------------- Menu/Navigation Bar ------------------------ */
@@ -14,6 +15,7 @@ body {
   flex-direction: row;
   justify-content: flex-start;
   border: 1px solid #737373;
+  height: 3.5vh;
 }
 .option {
   color: #666;
@@ -30,17 +32,45 @@ body {
 
 /* -------------------------------------------------------------- */
 
-/* -------------------- Graph Display Area --------------------- */
+/* -------------------- Container 2 (Message & Graph) --------------------- */
 
-.container > .graph-display {
+.container2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
   flex-direction: row;
-  justify-content: flex-start;
-  border: 1px solid #737373;
+  height: 100%;
+  flex: 1 0 65%;
   order: 1;
-  flex: 1 0 65%;  /*  flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ] */
 }
 
-/* -------------------------------------------------------------- */
+    /* -------------------- Graph Display Area --------------------- */
+
+    .container2 > .graph-display {
+      flex-direction: row;
+      justify-content: flex-start;
+      border: 1px solid #737373;
+      order: 1;
+      flex: 1 0 65%;  /*  flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ] */
+      height:60%;
+    }
+
+    /* -------------------------------------------------------------- */
+  
+    /* -------------------- Message Area --------------------- */
+
+    .container2 > .message {
+      flex-direction: row;
+      justify-content: flex-start;
+      border: 1px solid #737373;
+      order: 2;
+      flex: 1 0 65%;  /*  flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ] */
+      height: 40%;
+    }
+
+    /* -------------------------------------------------------------- */
+
+/* ------------------ End of Container 2 ------------------------------*/
 
 /* -------------------- Data Selection Area --------------------- */
 
@@ -49,6 +79,7 @@ body {
   border: 1px solid #737373;
   order: 2;
   flex: 1 0 34%;
+  height: 100%;
 }
 
 /* -------------------------------------------------------------- */
