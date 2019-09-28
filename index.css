@@ -1,3 +1,14 @@
+body {
+  margin: 0vw;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* ------------------- Menu/Navigation Bar ------------------------ */
+
 .menu {
     display: flex;
     flex-direction: row;
@@ -16,3 +27,28 @@
 .option:hover {     /*When Cursor Hovers it will highlight option*/
   background-color: #ddd;
 }
+
+/* -------------------------------------------------------------- */
+
+/* -------------------- Graph Display Area --------------------- */
+
+.container > .graph-display {
+  flex-direction: row;
+  justify-content: flex-start;
+  border: 1px solid #737373;
+  order: 1;
+  flex: 1 0 65%;  /*  flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ] */
+}
+
+/* -------------------------------------------------------------- */
+
+/* -------------------- Data Selection Area --------------------- */
+
+.container > .data-selection {
+  flex-direction: column;
+  border: 1px solid #737373;
+  order: 2;
+  flex: 1 0 34%;
+}
+
+/* -------------------------------------------------------------- */
