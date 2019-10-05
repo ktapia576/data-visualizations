@@ -15,7 +15,7 @@ body {
   flex-direction: row;
   justify-content: flex-start;
   border: 1px solid #737373;
-  height: 3.5vh;
+  height: 35px;
 }
 .option {
   color: #666;
