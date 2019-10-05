@@ -9,13 +9,40 @@
 </head>
 <body>
     <div class="menu">
-        <div class="option"><a href="#news">File</a></div>
-        <div class="option"><a href="#news">View</a></div>
-        <div class="option"><a href="#news">Setting</a></div>
-        <div class="option"><a href="#news">Help</a></div>
+        <div class="dropdown" style="float:left;">
+            <button class="dropbtn">File</button>
+            <div class="dropdown-content" style="left:0;">
+                <a href="#">Load CSV File</a>
+                <a href="#">Login to DB</a>
+                <a href="#">Logout DB</a>
+                <a href="#">Exit</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">View</button>
+            <div class="dropdown-content" style="left:0;">
+                <a href="#">Line</a>
+                <a href="#">Pie</a>
+                <a href="#">Bar</a>
+                <a href="#">Map</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Setting</button>
+            <div class="dropdown-content" style="left:0;">
+                <a href="#">User Info</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Help</button>
+            <div class="dropdown-content" style="left:0;">
+                <a href="#">Info</a>
+                <a href="#">Client</a>
+            </div>
+        </div>
     </div>
-    <div class="container">     <!-- Nested Flex Conatianer --> 
-        <div class ="container2">
+    <div class="container">     
+        <div class ="container2">   <!-- Nested Flex Conatianer --> 
             <div class="graph-display">
                 <p>Lorem Ipsum is simply dummy Lorem Ipsum is simply Lorem Ipsum is simply </p>
             </div>
