@@ -13,7 +13,7 @@ $( "#loadFile" ).click(function( e ) {   // add event listener to <input type="f
     e.stopPropagation();    // stop bubbling from occuring
   });
 
-$("#loadFile").change(function(e){  // when value of input changes (once user uploads file), do this
+$("#loadFile").change(function(e){  // when value of input changes (once user uploads file), do this [change event is sent to an element when its value changes]
   alert('File Selected!');
   loadFile();
 });
