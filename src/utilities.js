@@ -2,7 +2,18 @@ const loadFile = () => {
   const csvFile = document.getElementById("loadFile").files[0];   // get first file only
   console.log(csvFile);
 
-  //console.log(navigator.deviceMemory);  // Only works on Chrome
+  var browser = navigator.userAgent;  // Get user's browser
+  console.log(browser);
+
+  // Check User's Browser
+  if (browser.includes("Firefox") === true) {
+    console.log("You have Firefox");
+  } else if (browser.includes("Chrome") === true){
+    console.log("You have Chrome");
+    console.log("Your RAM:"+navigator.deviceMemory);  // Only works on Chrome
+  } else {
+    console.log("You are not using Firefox or Chrome");
+  }
 
   // Parse local CSV file
   Papa.parse(csvFile, {
