@@ -1,15 +1,15 @@
 const loadFile = () => { 
-  var csvFile = document.getElementById("loadFile").files[0];   // get first file only
+  const csvFile = document.getElementById("loadFile").files[0];   // get first file only
   console.log(csvFile);
   
-  var reader = new FileReader();
-  var data;
+  const reader = new FileReader();
+  var rawData;
 
   reader.readAsText(csvFile);   // result attribute contains the contents of the file as a text string. DOES THIS IN ASYNC FASHION!! (careful for bugs)
   reader.onloadend = function(){  // This event is triggered each time the reading operation is completed (either in success or failure).
-    data = reader.result;   // result property returns the file's contents. Only after read operation
-    var parsed = Papa.parse(data);
-    console.log(parsed);
+    rawData = reader.result;   // result property returns the file's contents. Only after read operation
+    var parsedData = Papa.parse(rawData);
+    console.log(parsedData);
   }
 }
 
