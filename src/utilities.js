@@ -1,16 +1,15 @@
 const loadFile = () => { 
   const csvFile = document.getElementById("loadFile").files[0];   // get first file only
   console.log(csvFile);
-  
-  const reader = new FileReader();
-  var rawData;
 
-  reader.readAsText(csvFile);   // result attribute contains the contents of the file as a text string. DOES THIS IN ASYNC FASHION!! (careful for bugs)
-  reader.onloadend = function(){  // This event is triggered each time the reading operation is completed (either in success or failure).
-    rawData = reader.result;   // result property returns the file's contents. Only after read operation
-    var parsedData = Papa.parse(rawData);
-    console.log(parsedData);
-  }
+  console.log(navigator.deviceMemory);  // Only works on Chrome
+
+  // Parse local CSV file
+  Papa.parse(csvFile, {
+    complete: function(results) {   // The callback to execute when parsing is complete
+      console.log("Finished:", results.data);
+    }
+  });
 }
 
 $( "#loadFileBtn" ).click(function( e ) {  // add event listener to <a> element
