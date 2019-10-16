@@ -2,7 +2,7 @@ const loadFile = () => {
   const csvFile = document.getElementById("loadFile").files[0];   // get first file only
   console.log(csvFile);
 
-  var browser = navigator.userAgent;  // Get user's browser
+  var data, memory, browser = navigator.userAgent;  // Get user's browser
   console.log(browser);
 
   // Check User's Browser
@@ -10,7 +10,8 @@ const loadFile = () => {
     console.log("You have Firefox");
   } else if (browser.includes("Chrome") === true){
     console.log("You have Chrome");
-    console.log("Your RAM:"+navigator.deviceMemory);  // Only works on Chrome
+    memory = navigator.deviceMemory;  // Only works on Chrome
+    console.log("Your RAM:"+memory);  
   } else {
     console.log("You are not using Firefox or Chrome");
   }
@@ -19,8 +20,16 @@ const loadFile = () => {
   Papa.parse(csvFile, {
     delimiter: ",",
     header: true,
-    complete: results => { console.log("Finished:", results); }, // Callback to execute when parsing complete
-    error: error => { console.log(error); } // Callback to execute if FileReader encounters an error.
+    complete: results => {  // Callback to execute when parsing complete
+      console.log("Finished:", results); 
+      data = results.data;
+      console.log("Data:", data); 
+      document.getElementById("graph-display-msg").textContent = JSON.stringify(data);
+    }, 
+    error: error => {   // Callback to execute if FileReader encounters an error.
+      console.log(error.message); 
+      document.getElementById("graph-display-msg").textContent = error.message;
+    } 
   });
 }
 
