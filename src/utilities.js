@@ -6,6 +6,11 @@ const loadFile = () => {
 
   // Parse local CSV file
   Papa.parse(csvFile, {
+    config: {
+      // base config to use for each file
+      delimiter: ",",
+      header: true
+    },
     complete: results => { console.log("Finished:", results.data); }, // Callback to execute when parsing complete
     error: error => { console.log(error); } // Callback to execute if FileReader encounters an error.
   });
