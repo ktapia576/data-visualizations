@@ -1,3 +1,17 @@
+google.charts.load('current', {'packages':['table']}); // Load google charts
+
+const drawTable = (data, headers) => {
+  var tableData = new google.visualization.DataTable();
+
+  headers.forEach( item => { tableData.addColumn('string',item);} );   //Create Columns
+
+  data.forEach( row => { tableData.addRow(row);} );   //Add rows
+
+  var table = new google.visualization.Table(document.getElementById('graph-display'));
+
+  table.draw(tableData, {showRowNumber: true, width: '100%', height: '100%'});
+}
+
 const loadFile = () => { 
   var data, memory, headers, browser = navigator.userAgent;  // Get user's browser
   const csvFile = document.getElementById("loadFile").files[0];   // get first file only
@@ -18,14 +32,15 @@ const loadFile = () => {
   // Parse local CSV file
   Papa.parse(csvFile, {
     delimiter: ",",
-    header: true,
+    skipEmptyLines: true, //  lines that are completely empty will be skipped
     complete: results => {  // Callback to execute when parsing complete
       console.log("Finished:", results); 
       data = results.data;
-      headers = results.meta.fields; // make headers array
+      headers = data.shift(); // returns first row, which are headers, and then removes it from array
       console.log("Headers:", headers); 
       console.log("Data:", data);  // Get a record: data[0].Zipcode | where data[n'th item]."header"
       document.getElementById("graph-display-msg").textContent = JSON.stringify(data);
+      drawTable(data,headers);
     }, 
     error: error => {   // Callback to execute if FileReader encounters an error.
       console.log(error.message); 
