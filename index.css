@@ -5,7 +5,7 @@ body {
 
 .container {
   display: flex;
-  flex-wrap: no-wrap;
+  flex-wrap: nowrap;
   height: 96.5vh;
 }
 
@@ -59,10 +59,10 @@ body {
 
 .container2 {
   display: flex;
-  flex-wrap: wrap;
   align-content: flex-start;
-  flex-direction: row;
+  flex-direction: column;
   height: 100%;
+  max-width:65.9%;
   flex: 1 0 65%;
   order: 1;
 }
@@ -70,12 +70,11 @@ body {
     /* -------------------- Graph Display Area --------------------- */
 
     .container2 > .graph-display {
-      flex-direction: row;
+      flex-direction: column;
       justify-content: flex-start;
       border: 1px solid #737373;
       order: 1;
-      flex: 1 0 65%;  /*  flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ] */
-      height:60%;
+      flex: 0 0 65%;  /*  flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ] */
       overflow: auto;
     }
 
@@ -84,13 +83,13 @@ body {
     /* -------------------- Message Area --------------------- */
 
     .container2 > .message {
-      flex-direction: row;
+      flex-direction: column;
       justify-content: flex-start;
       border: 1px solid #737373;
       order: 2;
-      flex: 1 0 65%;  /*  flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ] */
-      height: 40%;
+      flex: 0 0 65%;  /*  flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ] */
       overflow: auto;
+      max-height: 34.7%;
     }
 
     /* -------------------------------------------------------------- */
@@ -103,8 +102,8 @@ body {
   flex-direction: column;
   border: 1px solid #737373;
   order: 2;
-  flex: 1 0 34%;
-  height: 100%;
+  flex: 0 0 34%;
+  height: 99.9%;
   overflow: auto;
 }
 
