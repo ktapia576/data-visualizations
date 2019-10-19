@@ -61,3 +61,29 @@ $( "#loadFile" ).click( e => {   // add event listener to <input type="file"> el
 $("#loadFile").change( e => {  // when value of input changes (once user uploads file), do this [change event is sent to an element when its value changes]
   loadFile();
 });
+
+$('#loginBtn').click( e => {
+  e.preventDefault(); // default action of an element from happening
+  document.getElementById('id01').style.display='block'; // show login modal
+  console.log("first click");
+});
+
+$("#login").click( e => {
+  e.preventDefault();
+  console.log("second click");
+  $.ajax({
+    type: "POST",
+    url: "src/login.php",
+    data: {
+      username: $("#username").val(),
+      password: $("#password").val()
+    },
+    success: function(result) {
+      document.getElementById("graph-display-msg").textContent = result;
+      console.log(result);
+    },
+    error: function(result) {
+      console.log(result);
+    }
+  });
+});
