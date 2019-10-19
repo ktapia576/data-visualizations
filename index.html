@@ -68,10 +68,9 @@
     <!-- Modal for Login -->
 
     <div id="id01" class="modal">
-        <form class="modal-content animate" action="" method="post">
-          <div class="imgcontainer">
+        <form class="modal-content animate" action="javascript:void(0);" method="post">
+          <div class="closecontainer">
             <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-            <img src="img_avatar2.png" alt="Avatar" class="avatar">
           </div>
       
           <div class="login-container">
@@ -82,14 +81,10 @@
             <input type="password" placeholder="Enter Password" id="password" required>
               
             <button type="submit" id="login" onclick="document.getElementById('id01').style.display='none'">Login</button>
-            <label>
-              <input type="checkbox" checked="checked" name="remember"> Remember me
-            </label>
           </div>
       
-          <div class="login-container" style="background-color:#f1f1f1">
+          <div class="login-container">
             <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-            <span class="psw">Forgot <a href="#">password?</a></span>
           </div>
         </form>
     </div>
