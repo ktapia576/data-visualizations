@@ -64,18 +64,26 @@ $("#loadFile").change( e => {  // when value of input changes (once user uploads
 
 $('#loginBtn').click( e => {
   e.preventDefault(); // default action of an element from happening
+  document.getElementById('id01').style.display='block'; // show login modal
+  console.log("first click");
+});
+
+$("#login").click( e => {
+  e.preventDefault();
+  console.log("second click");
   $.ajax({
     type: "POST",
-    url: "login.php",
+    url: "src/login.php",
     data: {
-        username: $("#username").val(),
-        password: $("#password").val()
+      username: $("#username").val(),
+      password: $("#password").val()
     },
     success: function(result) {
-        
+      document.getElementById("graph-display-msg").textContent = result;
+      console.log(result);
     },
     error: function(result) {
-        alert(result);
+      console.log(result);
     }
   });
 });
