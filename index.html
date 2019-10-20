@@ -48,7 +48,7 @@
             <button class="dropbtn">Help</button>
             <div class="dropdown-content" style="left:0;">
                 <a href="javascript:void(0);" id="infoBtn">Info</a>
-                <a href="#">Client</a>
+                <a href="javascript:void(0);" id="clientBtn">Client</a>
             </div>
         </div>
     </div>
@@ -120,6 +120,22 @@
                 <p id="userInfo"></p>
                 
                 <button type="button" onclick="document.getElementById('userInfoModal').style.display='none'" class="cancelbtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Client Info -->
+
+    <div id="clientInfoModal" class="modal">
+        <div class="modal-content animate">
+            <div class="closecontainer">
+                <span onclick="document.getElementById('clientInfoModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+            </div>
+        
+            <div class="client-info-container">
+                <p id="clientUserInfo"></p>
+                
+                <button type="button" onclick="document.getElementById('clientInfoModal').style.display='none'" class="cancelbtn">Close</button>
             </div>
         </div>
     </div>

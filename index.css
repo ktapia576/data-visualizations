@@ -259,7 +259,7 @@ input[type=text], input[type=password] {
 
 /* -------------------------------------------------------------- */
 
-/* -------------------- Info Modal Box -------------------------- */
+/* -------------------- User Info Modal Box -------------------------- */
 
 /* Set a style for all buttons */
 .user-info-container > button {
@@ -287,6 +287,46 @@ input[type=text], input[type=password] {
 
 /* Set a style for all buttons */
 .user-info-container > button {
+  background-color: rgb(86, 130, 211);
+  color: white;
+  padding: 14px 20px;
+  margin: 10px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* -------------------------------------------------------------- */
+
+/* -------------------- Client Info Modal Box -------------------------- */
+
+/* Set a style for all buttons */
+.client-info-container > button {
+  background-color: rgb(86, 130, 211);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.client-info-container > button:hover {
+  opacity: 0.8;
+}
+
+
+.client-info-container {
+  padding: 16px;
+}
+
+.client-info-container > p{
+  text-align: center;
+  margin: 40px 0;
+}
+
+/* Set a style for all buttons */
+.client-info-container > button {
   background-color: rgb(86, 130, 211);
   color: white;
   padding: 14px 20px;
