@@ -77,6 +77,8 @@ $("#login").click( e => {
       password: $("#password").val()
     },
     success: function(result) {
+      var cookies = Cookies.get(); // get object of all cookies
+      document.getElementById('welcome-msg').textContent = "Welcome, "+cookies.username;
       console.log("success");
       document.getElementById("graph-display-msg").textContent = result.message;
       console.log(result);
@@ -90,7 +92,25 @@ $("#login").click( e => {
   });
 });
 
+$('#logoutBtn').click( e => {
+  e.preventDefault(); // default action of an element from happening 
+
+  // Remove all cookies
+  Cookies.remove("name"); 
+  Cookies.remove("gender"); 
+  Cookies.remove("uid"); 
+  Cookies.remove("username"); 
+
+  document.getElementById('welcome-msg').textContent = "Logout Successful";  // Display you have been logged out
+});
+
 $(document).ready( () => {
   var cookies = Cookies.get(); // get object of all cookies
-  document.getElementById('welcome-msg').textContent = "Hello, "+cookies.username;
+
+  // Check if Cookie set
+  if (cookies.username == null){
+    document.getElementById('welcome-msg').textContent = "Login for more features!";
+  } else {
+    document.getElementById('welcome-msg').textContent = "Welcome, "+cookies.username;
+  }
 });
