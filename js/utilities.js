@@ -65,12 +65,10 @@ $("#loadFile").change( e => {  // when value of input changes (once user uploads
 $('#loginBtn').click( e => {
   e.preventDefault(); // default action of an element from happening
   document.getElementById('id01').style.display='block'; // show login modal
-  console.log("first click");
 });
 
 $("#login").click( e => {
   e.preventDefault();
-  console.log("second click");
   $.ajax({
     type: "POST",
     url: "src/login.php",
@@ -79,10 +77,12 @@ $("#login").click( e => {
       password: $("#password").val()
     },
     success: function(result) {
+      console.log("success");
       document.getElementById("graph-display-msg").textContent = result;
       console.log(result);
     },
     error: function(result) {
+      console.log("error");
       console.log(result);
     }
   });
