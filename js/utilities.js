@@ -114,3 +114,27 @@ $(document).ready( () => {
     document.getElementById('welcome-msg').textContent = "Welcome, "+cookies.username;
   }
 });
+
+$('#infoBtn').click( e => {
+  e.preventDefault(); // default action of an element from happening
+  document.getElementById('infoModal').style.display='block'; // show login modal
+});
+
+$('#userInfoBtn').click( e => {
+  e.preventDefault(); // default action of an element from happening
+  var cookies = Cookies.get(); // get object of all cookies
+
+  // Check if Cookie set
+  if (cookies.username == null){ // Check if null and undefined simultaneously
+    document.getElementById('userInfo').textContent = "Login to see User info!";
+  } else {
+    var userInfo = `<b>UID:</b> ${cookies.uid}</br>
+    <b>Username:</b> ${cookies.username}</br>
+    <b>Name:</b> ${cookies.name}</br>
+    <b>Gender:</b> ${cookies.gender}</br>`;
+
+    document.getElementById('userInfo').innerHTML = userInfo; // innerHTML returns HTML, textContent has better performance because its value is not parsed as HTML
+  }
+
+  document.getElementById('userInfoModal').style.display='block'; // show login modal
+});
