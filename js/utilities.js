@@ -108,7 +108,7 @@ $(document).ready( () => {
   var cookies = Cookies.get(); // get object of all cookies
 
   // Check if Cookie set
-  if (cookies.username == null){
+  if (cookies.username == null){ // Check if null and undefined simultaneously
     document.getElementById('welcome-msg').textContent = "Login for more features!";
   } else {
     document.getElementById('welcome-msg').textContent = "Welcome, "+cookies.username;
