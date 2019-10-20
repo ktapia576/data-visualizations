@@ -10,3 +10,4 @@ CPS 5745 project for data visualizations
 * [PapaParser Docs](https://www.papaparse.com/docs)
 * [JS Cookie](https://github.com/js-cookie/js-cookie)
 * [Template Literals](https://codeburst.io/javascript-what-are-template-literals-5d08a50ef2e3)
+* [Navigator](https://stackoverflow.com/questions/9514179/how-to-find-the-operating-system-version-using-javascript)
