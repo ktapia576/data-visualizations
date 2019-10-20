@@ -27,9 +27,12 @@
                 setcookie("name", $name, time() + 172800, "/");
                 setcookie("gender", $gender, time() + 172800, "/");
                 
-                echo json_encode(array("result" => "success", "username" => $username));
+                header('Content-Type: application/json');
+                echo json_encode(array("message" => "SUCCESS: Correct username and password", "username" => $username));
             } else {
-                die("<p>Login or Password incorrect!");
+                header('HTTP/1.1 500 Internal Server Error');  // HTTP code not equal to 200 for error
+                header('Content-Type: application/json; charset=UTF-8');
+                die(json_encode(array('message' => 'ERROR: Login incorrect')));
             }
         } else {
             echo "Username and Password not entered correctly!";
