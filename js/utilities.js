@@ -7,7 +7,7 @@ const drawTable = (data, headers) => {
 
   data.forEach( row => { tableData.addRow(row);} );   //Add rows
 
-  var table = new google.visualization.Table(document.getElementById('graph-display'));
+  var table = new google.visualization.Table(document.getElementById('table-display'));
 
   table.draw(tableData, {showRowNumber: true, width: '100%', height: '100%'});
 }
@@ -78,12 +78,19 @@ $("#login").click( e => {
     },
     success: function(result) {
       console.log("success");
-      document.getElementById("graph-display-msg").textContent = result;
+      document.getElementById("graph-display-msg").textContent = result.message;
       console.log(result);
     },
     error: function(result) {
+      var message = result.responseJSON.message;
       console.log("error");
+      document.getElementById("graph-display-msg").textContent = message;
       console.log(result);
     }
   });
+});
+
+$(document).ready( () => {
+  var cookies = Cookies.get(); // get object of all cookies
+  document.getElementById('welcome-msg').textContent = "Hello, "+cookies.username;
 });

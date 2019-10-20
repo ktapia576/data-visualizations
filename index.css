@@ -3,6 +3,9 @@ body {
   font-family: 'Nunito', sans-serif;
 }
 
+p {
+  margin:3px;
+}
 .container {
   display: flex;
   flex-wrap: nowrap;
@@ -74,7 +77,7 @@ body {
       justify-content: flex-start;
       border: 1px solid #737373;
       order: 1;
-      flex: 0 0 65%;  /*  flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ] */
+      flex: 0 0 50%;  /*  flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ] */
       overflow: auto;
     }
 
@@ -87,9 +90,9 @@ body {
       justify-content: flex-start;
       border: 1px solid #737373;
       order: 2;
-      flex: 0 0 65%;  /*  flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ] */
+      flex: 0 0 50%;  /*  flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ] */
       overflow: auto;
-      max-height: 34.7%;
+      max-height: 49.2%;
     }
 
     /* -------------------------------------------------------------- */
@@ -103,7 +106,7 @@ body {
   border: 1px solid #737373;
   order: 2;
   flex: 0 0 34%;
-  height: 99.9%;
+  height: 99.4%;
   overflow: auto;
 }
 
