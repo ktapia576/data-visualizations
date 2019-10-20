@@ -243,6 +243,7 @@ input[type=text], input[type=password] {
 .info-container > p{
   text-align: center;
   margin: 40px 0;
+  font-weight: bold;
 }
 
 /* Set a style for all buttons */
