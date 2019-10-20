@@ -47,7 +47,7 @@
         <div class="dropdown">
             <button class="dropbtn">Help</button>
             <div class="dropdown-content" style="left:0;">
-                <a href="#">Info</a>
+                <a href="javascript:void(0);" id="infoBtn">Info</a>
                 <a href="#">Client</a>
             </div>
         </div>
@@ -88,6 +88,24 @@
             <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
           </div>
         </form>
+    </div>
+
+    <!-- Modal for Info -->
+
+    <div id="infoModal" class="modal">
+        <div class="modal-content animate">
+          <div class="closecontainer">
+            <span onclick="document.getElementById('infoModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+          </div>
+      
+          <div class="info-container">
+            <p><b>Kevin Tapia</b></p>
+            <p><b>CPS5745</b></p>
+            <p><b>Oct. 20th 2019</b></p>
+              
+            <button type="button" onclick="document.getElementById('infoModal').style.display='none'" class="cancelbtn">Close</button>
+          </div>
+        </div>
     </div>
 </body>
 </html>

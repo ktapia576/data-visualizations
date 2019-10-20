@@ -114,3 +114,8 @@ $(document).ready( () => {
     document.getElementById('welcome-msg').textContent = "Welcome, "+cookies.username;
   }
 });
+
+$('#infoBtn').click( e => {
+  e.preventDefault(); // default action of an element from happening
+  document.getElementById('infoModal').style.display='block'; // show login modal
+});
