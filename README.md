@@ -8,3 +8,4 @@ CPS 5745 project for data visualizations
 * [Github Merge](https://stackoverflow.com/questions/5601931/what-is-the-best-and-safest-way-to-merge-a-git-branch-into-master)
 * [Navigator DeviceMemory](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/deviceMemory)
 * [PapaParser Docs](https://www.papaparse.com/docs)
+* [JS Cookie](https://github.com/js-cookie/js-cookie)
