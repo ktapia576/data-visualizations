@@ -157,3 +157,8 @@ $('#clientBtn').click( e => {
   document.getElementById('clientUserInfo').innerHTML = clientInfo; // innerHTML returns HTML, textContent has better performance because its value is not parsed as HTML
   document.getElementById('clientInfoModal').style.display='block'; // show login modal
 });
+
+$('#exitBtn').click( e => {
+  e.preventDefault();
+  document.getElementById('exitModal').style.display='block';
+});

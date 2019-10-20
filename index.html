@@ -26,7 +26,7 @@
                 </a>
                 <a id="loginBtn" href="javascript:void(0);">Login to DB</a>
                 <a id="logoutBtn" href="javascript:void(0);">Logout DB</a>
-                <a href="#">Exit</a>
+                <a id="exitBtn" href="javascript:void(0);">Exit</a>
             </div>
         </div>
         <div class="dropdown">
@@ -136,6 +136,23 @@
                 <p id="clientUserInfo"></p>
                 
                 <button type="button" onclick="document.getElementById('clientInfoModal').style.display='none'" class="cancelbtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Client Info -->
+
+    <div id="exitModal" class="modal">
+        <div class="modal-content animate">
+            <div class="closecontainer">
+                <span onclick="document.getElementById('exitModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+            </div>
+        
+            <div class="exit-container">
+                <p>Are you sure you want to exit?</p>
+                
+                <button type="button" onclick="document.getElementById('exitModal').style.display='none'" class="cancelbtn">Yes</button>
+                <button type="button" onclick="document.getElementById('exitModal').style.display='none'" class="cancelbtn">No</button>
             </div>
         </div>
     </div>

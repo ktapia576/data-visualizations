@@ -337,3 +337,45 @@ input[type=text], input[type=password] {
 }
 
 /* -------------------------------------------------------------- */
+
+/* -------------------- Exit Modal Box -------------------------- */
+
+/* Set a style for all buttons */
+.exit-container > button {
+  background-color: rgb(86, 130, 211);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.exit-container > button:hover {
+  opacity: 0.8;
+}
+
+
+.exit-container {
+  padding: 16px;
+}
+
+.exit-container > p{
+  text-align: center;
+  margin: 40px 0;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+/* Set a style for all buttons */
+.exit-container > button {
+  background-color: rgb(86, 130, 211);
+  color: white;
+  padding: 14px 20px;
+  margin: 10px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* -------------------------------------------------------------- */
