@@ -41,7 +41,7 @@
         <div class="dropdown">
             <button class="dropbtn">Setting</button>
             <div class="dropdown-content" style="left:0;">
-                <a href="#">User Info</a>
+                <a id="userInfoBtn" href="javascript:void(0);">User Info</a>
             </div>
         </div>
         <div class="dropdown">
@@ -99,12 +99,28 @@
           </div>
       
           <div class="info-container">
-            <p>Kevin Tapia</p>
-            <p>CPS5745</p>
-            <p>Oct. 20th 2019</p>
+            <p>Kevin Tapia</br>
+            CPS5745</br>
+            Oct. 20th 2019</p>
               
             <button type="button" onclick="document.getElementById('infoModal').style.display='none'" class="cancelbtn">Close</button>
           </div>
+        </div>
+    </div>
+
+    <!-- Modal for User Info -->
+
+    <div id="userInfoModal" class="modal">
+        <div class="modal-content animate">
+            <div class="closecontainer">
+                <span onclick="document.getElementById('userInfoModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+            </div>
+        
+            <div class="user-info-container">
+                <p id="userInfo"></p>
+                
+                <button type="button" onclick="document.getElementById('userInfoModal').style.display='none'" class="cancelbtn">Close</button>
+            </div>
         </div>
     </div>
 </body>
