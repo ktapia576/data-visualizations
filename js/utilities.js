@@ -13,12 +13,12 @@ const getData = choice => {
     states.push(row.State);
   });
   states = new Set(states); // Get unique states
-  console.log(states);
 
   // Get avg of choice per state
   var count = 0;
   var total = 0;
 
+  // Check what choice
   if (choice == "AvgWages") {
     states.forEach(state => {
       data.forEach(dataRow => {
@@ -77,7 +77,7 @@ const drawBar = choice => {
 
   var options = {
     title: `${choice} by State`,
-    chartArea: {width: '80%', height: '70%'},
+    chartArea: {width: '80%', height: '100%'},
     hAxis: {
       title: choice,
     },
@@ -105,7 +105,6 @@ const drawLine = choice => {
 
   lineData.addColumn('string', 'State');
   lineData.addColumn('number', choice);
-
   
   var newData = getData(choice);
   lineData.addRows(newData);
@@ -304,15 +303,16 @@ $('#lineBtn').click( e => {
     // Check which choice selected 
     if($("#AvgWages").prop("checked")){
       choice = "AvgWages";
+      drawLine(choice);
     } else if($("#EstimatedPopulation").prop("checked")) {
       choice = "EstimatedPopulation";
+      drawLine(choice);
     } else if($("#State").prop("checked")) {
-      choice = "State";
+      document.getElementById('error-message').innerHTML = "Error: You cant choose Line graph for State count";
+      document.getElementById('errorModal').style.display='block'; // show error modal
     } else {
       choice = null;
     }
-
-    drawLine(choice);
   } else {
     document.getElementById('error-message').innerHTML = "Error: Try to load in a CSV File!";
     document.getElementById('errorModal').style.display='block'; // show error modal
@@ -329,6 +329,11 @@ $('#barBtn').click( e => {
     console.log($("#EstimatedPopulation").prop("checked"));
     console.log($("#State").prop("checked"));
 
+    console.log("---------------");
+    console.log($("#AvgWages").prop("checked"));  // Will change with radio checked state
+    console.log($("#EstimatedPopulation").prop("checked"));
+    console.log($("#State").prop("checked"));
+
     // Check which choice selected 
     if($("#AvgWages").prop("checked")){
       choice = "AvgWages";
@@ -340,6 +345,7 @@ $('#barBtn').click( e => {
       choice = null;
     }
 
+    console.log(choice);
     drawBar(choice);
   } else {
     document.getElementById('error-message').innerHTML = "Error: Try to load in a CSV File!";
