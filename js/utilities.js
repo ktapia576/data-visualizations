@@ -92,6 +92,7 @@ const drawLine = choice => {
   var lineData = new google.visualization.DataTable();
 
   var options = {
+    height: 400,
     hAxis: {
       title: 'State'
     },
