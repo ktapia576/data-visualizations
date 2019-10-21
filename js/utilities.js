@@ -1,5 +1,37 @@
 var csvFile = null;
+var data = null;
 google.charts.load('current', {'packages':['table']}); // Load google charts
+google.charts.load('current', {packages: ['corechart', 'line']}); // Load for Line
+
+const drawLine = choice => {
+  var lineData = new google.visualization.DataTable();
+
+  var options = {
+    hAxis: {
+      title: 'State'
+    },
+    vAxis: {
+      title: choice
+    },
+    backgroundColor: '#ffffff'
+  };
+
+  lineData.addColumn('string', 'State');
+  lineData.addColumn('number', choice);
+
+  data.forEach( row => { 
+    if (choice == "AvgWages") {
+      lineData.addRow([row.State, Number(row.AvgWages)]);
+    } else if (choice == "EstimatedPopulation") {
+      lineData.addRow([row.State, Number(row.EstimatedPopulation)]);
+    } else {
+      console.log("Error with choice");
+    }
+  });
+
+  var lineChart = new google.visualization.LineChart(document.getElementById('chart-div'));
+  lineChart.draw(lineData, options);
+}
 
 const drawTable = (data, headers) => {
   var tableData = new google.visualization.DataTable();
@@ -26,7 +58,7 @@ const drawTable = (data, headers) => {
 }
 
 const loadFile = () => { 
-  var data, memory, headers, browser = navigator.userAgent;  // Get user's browser
+  var memory, headers, browser = navigator.userAgent;  // Get user's browser
   csvFile = document.getElementById("loadFile").files[0];   // get first file only
   console.log(csvFile);
   console.log(browser);
@@ -54,7 +86,6 @@ const loadFile = () => {
       //headers = data.shift(); // returns first row, which are headers, and then removes it from array
       console.log("Headers:", headers); 
       console.log("Data:", data);  // Get a record: data[0].Zipcode | where data[n'th item]."header"
-      document.getElementById("graph-display-msg").textContent = JSON.stringify(data);
       drawTable(data,headers);
     }, 
     error: error => {   // Callback to execute if FileReader encounters an error.
@@ -183,10 +214,24 @@ $('#lineBtn').click( e => {
   e.preventDefault(); // default action of an element from happening
 
   if(csvFile != null){
+    var choice;
     console.log("csv loaded");
     console.log($("#AvgWages").prop("checked"));  // Will change with radio checked state
     console.log($("#EstimatedPopulation").prop("checked"));
     console.log($("#State").prop("checked"));
+
+    // Check which choice selected 
+    if($("#AvgWages").prop("checked")){
+      choice = "AvgWages";
+    } else if($("#EstimatedPopulation").prop("checked")) {
+      choice = "EstimatedPopulation";
+    } else if($("#State").prop("checked")) {
+      choice = "State";
+    } else {
+      choice = null;
+    }
+
+    drawLine(choice);
   } else {
     document.getElementById('error-message').innerHTML = "Error: Try to load in a CSV File!";
     document.getElementById('errorModal').style.display='block'; // show error modal
