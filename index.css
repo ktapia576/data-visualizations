@@ -110,6 +110,10 @@ p {
   overflow: auto;
 }
 
+.data-selection > #choices {
+  margin: 5px;
+  align-content: center;
+}
 /* -------------------------------------------------------------- */
 
 /* ----------------- Default Modal Content -----------------------*/ 

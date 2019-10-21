@@ -64,8 +64,15 @@
         <div class="data-selection">   
             <p id="welcome-msg"></p>
             <p id="message"></p>
-
             
+            <div id='choices'>
+                <input type='radio' id='AvgWages' name='choice' value='avgWages' checked> <b>AvgWages</b>(Bar, Line)</br>
+                <input type='radio' id='EstimatedPopulation' name='choice' value='estimatedPopulation'> EstimatedPopulation(Bar, Line)</br>
+                <input type='radio' id='State' name='choice' value='state'> State(Bar, Pie)</br>
+
+                <p id="description">Please select one of the following choice, and then run one of the graph in the View menu.</br>
+                    <b>Note:</b> The empty, NULL or NaN value will be excluded</p>
+            </div>
         </div>
     </div>
 
