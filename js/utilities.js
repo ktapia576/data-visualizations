@@ -73,18 +73,19 @@ const drawBar = choice => {
   var barData = google.visualization.arrayToDataTable(dataArray);
 
   var options = {
-    title: `${choice} by State`,
-    chartArea: {width: '80%', height: '100%'},
     height: 400,
+    title: `${choice} by State`,
+    chartArea: {width: '80%', height: '80%'},
     hAxis: {
-      title: choice,
+      title: choice
     },
     vAxis: {
       title: "State"
     }
   };
 
-  var barChart = new google.visualization.BarChart(document.getElementById('chart-div'));
+  console.log(options);
+  var barChart = new google.visualization.ColumnChart(document.getElementById('chart-div'));
   barChart.draw(barData, options);
 }
 
