@@ -184,6 +184,9 @@ $('#lineBtn').click( e => {
 
   if(csvFile != null){
     console.log("csv loaded");
+    console.log($("#AvgWages").prop("checked"));  // Will change with radio checked state
+    console.log($("#EstimatedPopulation").prop("checked"));
+    console.log($("#State").prop("checked"));
   } else {
     document.getElementById('error-message').innerHTML = "Error: Try to load in a CSV File!";
     document.getElementById('errorModal').style.display='block'; // show error modal
