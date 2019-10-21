@@ -32,7 +32,7 @@
         <div class="dropdown">
             <button class="dropbtn">View</button>
             <div class="dropdown-content" style="left:0;">
-                <a href="#">Line</a>
+                <a id="lineBtn" href="javascript:void(0);">Line</a>
                 <a href="#">Pie</a>
                 <a href="#">Bar</a>
                 <a href="#">Map</a>
@@ -63,6 +63,9 @@
         </div>
         <div class="data-selection">   
             <p id="welcome-msg"></p>
+            <p id="message"></p>
+
+            
         </div>
     </div>
 
@@ -153,6 +156,22 @@
                 
                 <button type="button" onclick="document.getElementById('exitModal').style.display='none'" class="cancelbtn">Yes</button>
                 <button type="button" onclick="document.getElementById('exitModal').style.display='none'" class="cancelbtn">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Error Info -->
+
+    <div id="errorModal" class="modal">
+        <div class="modal-content animate">
+            <div class="closecontainer">
+                <span onclick="document.getElementById('errorModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+            </div>
+        
+            <div class="error-container">
+                <p id="error-message"></p>
+                
+                <button type="button" onclick="document.getElementById('errorModal').style.display='none'">Okay</button>
             </div>
         </div>
     </div>

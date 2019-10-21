@@ -118,7 +118,7 @@ p {
 .cancelbtn {
   width: auto;
   padding: 10px 18px;
-  background-color: #f44336;
+  background-color: rgb(86, 130, 211);
 }
 
 /* Position the close button */
@@ -240,21 +240,10 @@ input[type=text], input[type=password] {
   padding: 16px;
 }
 
-.info-container > p{
+.info-container > p {
   text-align: center;
   margin: 40px 0;
   font-weight: bold;
-}
-
-/* Set a style for all buttons */
-.info-container > button {
-  background-color: rgb(86, 130, 211);
-  color: white;
-  padding: 14px 20px;
-  margin: 10px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
 }
 
 /* -------------------------------------------------------------- */
@@ -280,20 +269,9 @@ input[type=text], input[type=password] {
   padding: 16px;
 }
 
-.user-info-container > p{
+.user-info-container > p {
   text-align: center;
   margin: 40px 0;
-}
-
-/* Set a style for all buttons */
-.user-info-container > button {
-  background-color: rgb(86, 130, 211);
-  color: white;
-  padding: 14px 20px;
-  margin: 10px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
 }
 
 /* -------------------------------------------------------------- */
@@ -315,25 +293,13 @@ input[type=text], input[type=password] {
   opacity: 0.8;
 }
 
-
 .client-info-container {
   padding: 16px;
 }
 
-.client-info-container > p{
+.client-info-container > p {
   text-align: center;
   margin: 40px 0;
-}
-
-/* Set a style for all buttons */
-.client-info-container > button {
-  background-color: rgb(86, 130, 211);
-  color: white;
-  padding: 14px 20px;
-  margin: 10px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
 }
 
 /* -------------------------------------------------------------- */
@@ -360,22 +326,38 @@ input[type=text], input[type=password] {
   padding: 16px;
 }
 
-.exit-container > p{
+.exit-container > p {
   text-align: center;
   margin: 40px 0;
   font-weight: bold;
   font-size: 25px;
 }
 
+/* -------------------------------------------------------------- */
+
+/* -------------------- Error Modal Box -------------------------- */
+
 /* Set a style for all buttons */
-.exit-container > button {
+.error-container > button {
   background-color: rgb(86, 130, 211);
   color: white;
   padding: 14px 20px;
-  margin: 10px 0;
+  margin: 8px 0;
   border: none;
   cursor: pointer;
   width: 100%;
 }
 
+.error-container > button:hover {
+  opacity: 0.8;
+}
+
+.error-container {
+  padding: 16px;
+}
+
+.error-container > p {
+  text-align: center;
+  margin: 40px 0;
+}
 /* -------------------------------------------------------------- */

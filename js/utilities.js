@@ -1,3 +1,4 @@
+var csvFile = null;
 google.charts.load('current', {'packages':['table']}); // Load google charts
 
 const drawTable = (data, headers) => {
@@ -20,11 +21,13 @@ const drawTable = (data, headers) => {
   var table = new google.visualization.Table(document.getElementById('table-display'));
 
   table.draw(tableData, {showRowNumber: true, width: '100%', height: '100%'});
+
+  document.getElementById("message").innerHTML = `<b>Number of Records:</b> ${data.length}`; // Show number of records
 }
 
 const loadFile = () => { 
   var data, memory, headers, browser = navigator.userAgent;  // Get user's browser
-  const csvFile = document.getElementById("loadFile").files[0];   // get first file only
+  csvFile = document.getElementById("loadFile").files[0];   // get first file only
   console.log(csvFile);
   console.log(browser);
 
@@ -92,13 +95,13 @@ $("#login").click( e => {
       var cookies = Cookies.get(); // get object of all cookies
       document.getElementById('welcome-msg').textContent = "Welcome, "+cookies.username;
       console.log("success");
-      document.getElementById("graph-display-msg").textContent = result.message;
+      document.getElementById("message").textContent = result.message;
       console.log(result);
     },
     error: function(result) {
       var message = result.responseJSON.message;
       console.log("error");
-      document.getElementById("graph-display-msg").textContent = message;
+      document.getElementById("message").textContent = message;
       console.log(result);
     }
   });
@@ -113,7 +116,8 @@ $('#logoutBtn').click( e => {
   Cookies.remove("uid"); 
   Cookies.remove("username"); 
 
-  document.getElementById('welcome-msg').textContent = "Logout Successful";  // Display you have been logged out
+  document.getElementById('welcome-msg').textContent = "";  // Display you have been logged out
+  document.getElementById('message').textContent = "Logout Successful";  // Display you have been logged out
 });
 
 $(document).ready( () => {
@@ -173,4 +177,15 @@ $('#clientBtn').click( e => {
 $('#exitBtn').click( e => {
   e.preventDefault();
   document.getElementById('exitModal').style.display='block';
+});
+
+$('#lineBtn').click( e => {
+  e.preventDefault(); // default action of an element from happening
+
+  if(csvFile != null){
+    console.log("csv loaded");
+  } else {
+    document.getElementById('error-message').innerHTML = "Error: Try to load in a CSV File!";
+    document.getElementById('errorModal').style.display='block'; // show error modal
+  }
 });
