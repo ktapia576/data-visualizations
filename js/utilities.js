@@ -295,10 +295,6 @@ $('#lineBtn').click( e => {
 
   if(csvFile != null){
     var choice;
-    console.log("csv loaded");
-    console.log($("#AvgWages").prop("checked"));  // Will change with radio checked state
-    console.log($("#EstimatedPopulation").prop("checked"));
-    console.log($("#State").prop("checked"));
 
     // Check which choice selected 
     if($("#AvgWages").prop("checked")){
