@@ -3,9 +3,19 @@ google.charts.load('current', {'packages':['table']}); // Load google charts
 const drawTable = (data, headers) => {
   var tableData = new google.visualization.DataTable();
 
-  headers.forEach( item => { tableData.addColumn('string',item);} );   //Create Columns
+  //headers.forEach( item => { tableData.addColumn('string',item);} );   //Create Columns
+  // Create Columns manually
+  tableData.addColumn('string',headers[0]); // Record Number
+  tableData.addColumn('string',headers[1]); // Zipcode
+  tableData.addColumn('string',headers[3]); //City
+  tableData.addColumn('string',headers[4]); // State
+  tableData.addColumn('string',headers[17]); //Estimated Population
+  tableData.addColumn('string',headers[19]); //AvgWages
+  tableData.addColumn('string',headers[6]); // Latitude
+  tableData.addColumn('string',headers[7]); //Longitude
 
-  data.forEach( row => { tableData.addRow(row);} );   //Add rows
+  //data.forEach( row => { tableData.addRow(row);} );   //Add rows
+  data.forEach( row => { tableData.addRow([row.RecordNumber, row.Zipcode, row.City, row.State, row.EstimatedPopulation, row.AvgWages, row.Latitude, row.Longitude]);} );   //Add rows
 
   var table = new google.visualization.Table(document.getElementById('table-display'));
 
@@ -32,11 +42,13 @@ const loadFile = () => {
   // Parse local CSV file
   Papa.parse(csvFile, {
     delimiter: ",",
+    header: true,
     skipEmptyLines: true, //  lines that are completely empty will be skipped
     complete: results => {  // Callback to execute when parsing complete
       console.log("Finished:", results); 
       data = results.data;
-      headers = data.shift(); // returns first row, which are headers, and then removes it from array
+      headers = results.meta .fields;
+      //headers = data.shift(); // returns first row, which are headers, and then removes it from array
       console.log("Headers:", headers); 
       console.log("Data:", data);  // Get a record: data[0].Zipcode | where data[n'th item]."header"
       document.getElementById("graph-display-msg").textContent = JSON.stringify(data);
