@@ -336,7 +336,6 @@ $('#barBtn').click( e => {
       choice = null;
     }
 
-    console.log(choice);
     drawBar(choice);
   } else {
     document.getElementById('error-message').innerHTML = "Error: Try to load in a CSV File!";
