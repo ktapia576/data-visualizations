@@ -2,6 +2,93 @@ var csvFile = null;
 var data = null;
 google.charts.load('current', {'packages':['table']}); // Load google charts
 google.charts.load('current', {packages: ['corechart', 'line']}); // Load for Line
+google.charts.load('current', {packages: ['corechart', 'bar']});  // Load for Bar
+
+const getData = choice => {
+  var states =[];
+  var newData=[];
+
+  // Get states
+  data.forEach( row => { 
+    states.push(row.State);
+  });
+  states = new Set(states); // Get unique states
+  console.log(states);
+
+  // Get avg of choice per state
+  var count = 0;
+  var total = 0;
+
+  if (choice == "AvgWages") {
+    states.forEach(state => {
+      data.forEach(dataRow => {
+        if(state == dataRow.State){
+          total = total + Number(dataRow.AvgWages);
+          count++;
+        }
+      });
+
+      newData.push([state, total/count]);
+      total=0;
+      count=0;
+    });
+  } else if (choice == "EstimatedPopulation") {  
+    states.forEach(state => {
+      data.forEach(dataRow => {
+        if(state == dataRow.State){
+          total = total + Number(dataRow.EstimatedPopulation);
+          count++;
+        }
+      });
+
+      newData.push([state, total/count]);
+      total=0;
+      count=0;
+    });
+  } else if (choice == "Count") {
+    states.forEach(state => {
+      data.forEach(dataRow => {
+        if(state == dataRow.State){
+          count++;
+        }
+      });
+
+      newData.push([state, count]);
+      total=0;
+      count=0;
+    });
+  } else {
+    console.log("Error with choice");
+  }
+
+  console.log(newData);
+ 
+  return newData;
+}
+
+const drawBar = choice => {
+  var dataArray = [];
+  dataArray.push(['State', choice]);
+
+  var newData = getData(choice);
+  newData.forEach(row => { dataArray.push(row)});
+
+  var barData = google.visualization.arrayToDataTable(dataArray);
+
+  var options = {
+    title: `${choice} by State`,
+    chartArea: {width: '80%', height: '70%'},
+    hAxis: {
+      title: choice,
+    },
+    vAxis: {
+      title: "State"
+    }
+  };
+
+  var barChart = new google.visualization.BarChart(document.getElementById('chart-div'));
+  barChart.draw(barData, options);
+}
 
 const drawLine = choice => {
   var lineData = new google.visualization.DataTable();
@@ -19,15 +106,9 @@ const drawLine = choice => {
   lineData.addColumn('string', 'State');
   lineData.addColumn('number', choice);
 
-  data.forEach( row => { 
-    if (choice == "AvgWages") {
-      lineData.addRow([row.State, Number(row.AvgWages)]);
-    } else if (choice == "EstimatedPopulation") {
-      lineData.addRow([row.State, Number(row.EstimatedPopulation)]);
-    } else {
-      console.log("Error with choice");
-    }
-  });
+  
+  var newData = getData(choice);
+  lineData.addRows(newData);
 
   var lineChart = new google.visualization.LineChart(document.getElementById('chart-div'));
   lineChart.draw(lineData, options);
@@ -232,6 +313,34 @@ $('#lineBtn').click( e => {
     }
 
     drawLine(choice);
+  } else {
+    document.getElementById('error-message').innerHTML = "Error: Try to load in a CSV File!";
+    document.getElementById('errorModal').style.display='block'; // show error modal
+  }
+});
+
+$('#barBtn').click( e => {
+  e.preventDefault(); // default action of an element from happening
+
+  if(csvFile != null){
+    var choice;
+    console.log("csv loaded");
+    console.log($("#AvgWages").prop("checked"));  // Will change with radio checked state
+    console.log($("#EstimatedPopulation").prop("checked"));
+    console.log($("#State").prop("checked"));
+
+    // Check which choice selected 
+    if($("#AvgWages").prop("checked")){
+      choice = "AvgWages";
+    } else if($("#EstimatedPopulation").prop("checked")) {
+      choice = "EstimatedPopulation";
+    } else if($("#State").prop("checked")) {
+      choice = "Count";
+    } else {
+      choice = null;
+    }
+
+    drawBar(choice);
   } else {
     document.getElementById('error-message').innerHTML = "Error: Try to load in a CSV File!";
     document.getElementById('errorModal').style.display='block'; // show error modal
