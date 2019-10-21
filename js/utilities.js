@@ -60,9 +60,6 @@ const getData = choice => {
   } else {
     console.log("Error with choice");
   }
-
-  console.log(newData);
- 
   return newData;
 }
 
@@ -78,6 +75,7 @@ const drawBar = choice => {
   var options = {
     title: `${choice} by State`,
     chartArea: {width: '80%', height: '100%'},
+    height: 400,
     hAxis: {
       title: choice,
     },
@@ -140,8 +138,6 @@ const drawTable = (data, headers) => {
 const loadFile = () => { 
   var memory, headers, browser = navigator.userAgent;  // Get user's browser
   csvFile = document.getElementById("loadFile").files[0];   // get first file only
-  console.log(csvFile);
-  console.log(browser);
 
   // Check User's Browser
   if (browser.includes("Firefox") === true) {
