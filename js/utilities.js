@@ -3,8 +3,9 @@ var data = null;
 google.charts.load('current', {'packages':['table']}); // Load google charts
 google.charts.load('current', {packages: ['corechart', 'line']}); // Load for Line
 google.charts.load('current', {packages: ['corechart', 'bar']});  // Load for Bar
+google.charts.load('current', {'packages':['corechart']});  // Load for Pie
 
-const getData = choice => {
+const cleanData = choice => {
   var states =[];
   var newData=[];
 
@@ -67,7 +68,7 @@ const drawBar = choice => {
   var dataArray = [];
   dataArray.push(['State', choice]);
 
-  var newData = getData(choice);
+  var newData = cleanData(choice);
   newData.forEach(row => { dataArray.push(row)});
 
   var barData = google.visualization.arrayToDataTable(dataArray);
@@ -84,7 +85,6 @@ const drawBar = choice => {
     }
   };
 
-  console.log(options);
   var barChart = new google.visualization.ColumnChart(document.getElementById('chart-div'));
   barChart.draw(barData, options);
 }
@@ -94,6 +94,7 @@ const drawLine = choice => {
 
   var options = {
     height: 400,
+    title: `${choice} by State`,
     hAxis: {
       title: 'State'
     },
@@ -106,11 +107,36 @@ const drawLine = choice => {
   lineData.addColumn('string', 'State');
   lineData.addColumn('number', choice);
   
-  var newData = getData(choice);
+  var newData = cleanData(choice);
   lineData.addRows(newData);
 
   var lineChart = new google.visualization.LineChart(document.getElementById('chart-div'));
   lineChart.draw(lineData, options);
+}
+
+const drawPie = choice => {
+  var dataArray = [];
+  dataArray.push(['State', choice]);
+
+  var newData = cleanData(choice);
+  newData.forEach(row => { dataArray.push(row)});
+
+  var pieData = google.visualization.arrayToDataTable(dataArray);
+
+  var options = {
+    height: 400,
+    title: `${choice} by State`,
+    chartArea: {width: '80%', height: '80%'},
+    hAxis: {
+      title: choice
+    },
+    vAxis: {
+      title: "State"
+    }
+  };
+
+  var chart = new google.visualization.PieChart(document.getElementById('chart-div'));
+  chart.draw(pieData, options);
 }
 
 const drawTable = (data, headers) => {
@@ -331,6 +357,31 @@ $('#barBtn').click( e => {
     }
 
     drawBar(choice);
+  } else {
+    document.getElementById('error-message').innerHTML = "Error: Try to load in a CSV File!";
+    document.getElementById('errorModal').style.display='block'; // show error modal
+  }
+});
+
+$('#pieBtn').click( e => {
+  e.preventDefault(); // default action of an element from happening
+
+  if(csvFile != null){
+    var choice;
+
+    // Check which choice selected 
+    if($("#AvgWages").prop("checked")){
+      document.getElementById('error-message').innerHTML = "Error: You cant choose Pie chart for AvgWages";
+      document.getElementById('errorModal').style.display='block'; // show error modal
+    } else if($("#EstimatedPopulation").prop("checked")) {
+      document.getElementById('error-message').innerHTML = "Error: You cant choose Pie chart for EstimatedPopulation";
+      document.getElementById('errorModal').style.display='block'; // show error modal
+    } else if($("#State").prop("checked")) {
+      choice = "Count";
+      drawPie(choice);
+    } else {
+      choice = null;
+    }
   } else {
     document.getElementById('error-message').innerHTML = "Error: Try to load in a CSV File!";
     document.getElementById('errorModal').style.display='block'; // show error modal
