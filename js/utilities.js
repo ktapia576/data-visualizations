@@ -28,8 +28,12 @@ const cleanData = choice => {
     states.forEach(state => {
       data.forEach(dataRow => {
         if(state == dataRow.State){
-          total = total + Number(dataRow.AvgWages);
-          count++;
+          if(isNaN(Number(dataRow.AvgWages))){
+            // skip
+          } else {
+            total = total + Number(dataRow.AvgWages);
+            count++;
+          }
         }
       });
 
@@ -41,8 +45,12 @@ const cleanData = choice => {
     states.forEach(state => {
       data.forEach(dataRow => {
         if(state == dataRow.State){
-          total = total + Number(dataRow.EstimatedPopulation);
-          count++;
+          if(isNaN(Number(dataRow.AvgWages))){
+            // skip
+          } else {
+            total = total + Number(dataRow.EstimatedPopulation);
+            count++;
+          }
         }
       });
 
@@ -149,16 +157,16 @@ const drawTable = (data, headers) => {
   //headers.forEach( item => { tableData.addColumn('string',item);} );   //Create Columns
   // Create Columns manually
   tableData.addColumn('string',headers[0]); // Record Number
-  tableData.addColumn('string',headers[1]); // Zipcode
+  tableData.addColumn('number',headers[1]); // Zipcode
   tableData.addColumn('string',headers[3]); //City
   tableData.addColumn('string',headers[4]); // State
-  tableData.addColumn('string',headers[17]); //Estimated Population
-  tableData.addColumn('string',headers[19]); //AvgWages
-  tableData.addColumn('string',headers[6]); // Latitude
-  tableData.addColumn('string',headers[7]); //Longitude
+  tableData.addColumn('number',headers[17]); //Estimated Population
+  tableData.addColumn('number',headers[19]); //AvgWages
+  tableData.addColumn('number',headers[6]); // Latitude
+  tableData.addColumn('number',headers[7]); //Longitude
 
   //data.forEach( row => { tableData.addRow(row);} );   //Add rows
-  data.forEach( row => { tableData.addRow([row.RecordNumber, row.Zipcode, row.City, row.State, row.EstimatedPopulation, row.AvgWages, row.Latitude, row.Longitude]);} );   //Add rows
+  data.forEach( row => { tableData.addRow([row.RecordNumber, Number(row.Zipcode), row.City, row.State, Number(row.EstimatedPopulation), Number(row.AvgWages), Number(row.Latitude), Number(row.Longitude)]);} );   //Add rows
 
   table = new google.visualization.Table(document.getElementById('table-display'));
 
@@ -170,37 +178,87 @@ const drawTable = (data, headers) => {
 const loadFile = () => { 
   var memory, headers, browser = navigator.userAgent;  // Get user's browser
   csvFile = document.getElementById("loadFile").files[0];   // get first file only
-
+  console.log(csvFile.size);
   // Check User's Browser
   if (browser.includes("Firefox") === true) {
-    console.log("You have Firefox");
+    console.log("You have Firefox");   
+    // Parse local CSV file
+    Papa.parse(csvFile, {
+      delimiter: ",",
+      header: true,
+      skipEmptyLines: true, //  lines that are completely empty will be skipped
+      complete: results => {  // Callback to execute when parsing complete
+        console.log("Finished:", results); 
+        data = results.data;
+        headers = results.meta.fields;
+        //headers = data.shift(); // returns first row, which are headers, and then removes it from array
+        console.log("Headers:", headers); 
+        console.log("Data:", data);  // Get a record: data[0].Zipcode | where data[n'th item]."header"
+        drawTable(data,headers);
+      }, 
+      error: error => {   // Callback to execute if FileReader encounters an error.
+        console.log(error.message); 
+        document.getElementById("graph-display-msg").textContent = error.message;
+      } 
+    });
   } else if (browser.includes("Chrome") === true){
     console.log("You have Chrome");
+
     memory = navigator.deviceMemory;  // Only works on Chrome
+
+    var memoryBytes = Number(memory)*1000000; // Convert 8GB to bytes
+    var amountUsable = csvFile.size/memoryBytes;  // Check if more than 5%
+    console.log(amountUsable);
+
+    //  Check if client can handle
+    if(amountUsable > .05){
+      document.getElementById('error-message').innerHTML = `<b>Error:</b> This CSV file is too large for your available memory: ${memory}GB 
+      </br><b>Filesize:</b> ${csvFile.size} bytes`;
+      document.getElementById('errorModal').style.display='block'; // show error modal
+    } else {
+      // Parse local CSV file
+      Papa.parse(csvFile, {
+        delimiter: ",",
+        header: true,
+        skipEmptyLines: true, //  lines that are completely empty will be skipped
+        complete: results => {  // Callback to execute when parsing complete
+          console.log("Finished:", results); 
+          data = results.data;
+          headers = results.meta .fields;
+          //headers = data.shift(); // returns first row, which are headers, and then removes it from array
+          console.log("Headers:", headers); 
+          console.log("Data:", data);  // Get a record: data[0].Zipcode | where data[n'th item]."header"
+          drawTable(data,headers);
+        }, 
+        error: error => {   // Callback to execute if FileReader encounters an error.
+          console.log(error.message); 
+          document.getElementById("graph-display-msg").textContent = error.message;
+        } 
+      });
+    }
     console.log("Your RAM:"+memory);  
   } else {
     console.log("You are not using Firefox or Chrome");
+    // Parse local CSV file
+    Papa.parse(csvFile, {
+      delimiter: ",",
+      header: true,
+      skipEmptyLines: true, //  lines that are completely empty will be skipped
+      complete: results => {  // Callback to execute when parsing complete
+        console.log("Finished:", results); 
+        data = results.data;
+        headers = results.meta .fields;
+        //headers = data.shift(); // returns first row, which are headers, and then removes it from array
+        console.log("Headers:", headers); 
+        console.log("Data:", data);  // Get a record: data[0].Zipcode | where data[n'th item]."header"
+        drawTable(data,headers);
+      }, 
+      error: error => {   // Callback to execute if FileReader encounters an error.
+        console.log(error.message); 
+        document.getElementById("graph-display-msg").textContent = error.message;
+      } 
+    });
   }
-
-  // Parse local CSV file
-  Papa.parse(csvFile, {
-    delimiter: ",",
-    header: true,
-    skipEmptyLines: true, //  lines that are completely empty will be skipped
-    complete: results => {  // Callback to execute when parsing complete
-      console.log("Finished:", results); 
-      data = results.data;
-      headers = results.meta .fields;
-      //headers = data.shift(); // returns first row, which are headers, and then removes it from array
-      console.log("Headers:", headers); 
-      console.log("Data:", data);  // Get a record: data[0].Zipcode | where data[n'th item]."header"
-      drawTable(data,headers);
-    }, 
-    error: error => {   // Callback to execute if FileReader encounters an error.
-      console.log(error.message); 
-      document.getElementById("graph-display-msg").textContent = error.message;
-    } 
-  });
 }
 
 $( "#loadFileBtn" ).click( e => {  // add event listener to <a> element
