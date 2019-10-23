@@ -1,5 +1,9 @@
 var csvFile = null;
 var data = null;
+var pieChart = null;
+var barChart = null;
+var lineChart = null;
+var table = null;
 google.charts.load('current', {'packages':['table']}); // Load google charts
 google.charts.load('current', {packages: ['corechart', 'line']}); // Load for Line
 google.charts.load('current', {packages: ['corechart', 'bar']});  // Load for Bar
@@ -85,12 +89,12 @@ const drawBar = choice => {
     }
   };
 
-  var barChart = new google.visualization.ColumnChart(document.getElementById('chart-div'));
+  barChart = new google.visualization.ColumnChart(document.getElementById('chart-div'));
   barChart.draw(barData, options);
 }
 
 const drawLine = choice => {
-  var lineData = new google.visualization.DataTable();
+  lineData = new google.visualization.DataTable();
 
   var options = {
     height: 400,
@@ -110,7 +114,7 @@ const drawLine = choice => {
   var newData = cleanData(choice);
   lineData.addRows(newData);
 
-  var lineChart = new google.visualization.LineChart(document.getElementById('chart-div'));
+  lineChart = new google.visualization.LineChart(document.getElementById('chart-div'));
   lineChart.draw(lineData, options);
 }
 
@@ -135,8 +139,8 @@ const drawPie = choice => {
     }
   };
 
-  var chart = new google.visualization.PieChart(document.getElementById('chart-div'));
-  chart.draw(pieData, options);
+  pieChart = new google.visualization.PieChart(document.getElementById('chart-div'));
+  pieChart.draw(pieData, options);
 }
 
 const drawTable = (data, headers) => {
@@ -156,7 +160,7 @@ const drawTable = (data, headers) => {
   //data.forEach( row => { tableData.addRow(row);} );   //Add rows
   data.forEach( row => { tableData.addRow([row.RecordNumber, row.Zipcode, row.City, row.State, row.EstimatedPopulation, row.AvgWages, row.Latitude, row.Longitude]);} );   //Add rows
 
-  var table = new google.visualization.Table(document.getElementById('table-display'));
+  table = new google.visualization.Table(document.getElementById('table-display'));
 
   table.draw(tableData, {showRowNumber: true, width: '100%', height: '100%'});
 
@@ -312,6 +316,45 @@ $('#clientBtn').click( e => {
 $('#exitBtn').click( e => {
   e.preventDefault();
   document.getElementById('exitModal').style.display='block';
+});
+
+$('#exit').click( e => {
+  e.preventDefault();
+  
+  // Remove all cookies
+  Cookies.remove("name"); 
+  Cookies.remove("gender"); 
+  Cookies.remove("uid"); 
+  Cookies.remove("username"); 
+  
+  // Remove charts
+  if (pieChart != null){
+    pieChart.clearChart();
+  }
+
+  if (barChart != null){
+    barChart.clearChart();
+  }
+
+  if (lineChart != null){
+    lineChart.clearChart();
+  }
+
+  if (table != null){
+    table.clearChart();
+  }
+
+  // Clear Data
+  csvFile = null;
+  data = null;
+  pieChart = null;
+  barChart = null;
+  lineChart = null;
+  table = null;
+
+  // Clear Messages
+  document.getElementById('welcome-msg').textContent = "";
+  document.getElementById('message').textContent = "";
 });
 
 $('#lineBtn').click( e => {
