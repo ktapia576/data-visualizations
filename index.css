@@ -18,12 +18,12 @@ p {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  border: 1px solid #737373;
   height: 35px;
+  background-color: #36c;
 }
 .dropbtn {
-  color: black;
-  background-color: white;
+  color: white;
+  background-color: #36c;
   font-size: 16px;
   border: none;
   cursor: pointer;
@@ -52,9 +52,9 @@ p {
   display: block;
 }
 
-.dropdown-content a:hover {background-color: #6d6d6d;}
+.dropdown-content a:hover {opacity: 0.8;}
 .dropdown:hover .dropdown-content {display: block;}
-.dropdown:hover .dropbtn {background-color: #6b6b6b;}
+.dropdown:hover .dropbtn {opacity: 0.8;}
 
 /* -------------------------------------------------------------- */
 
